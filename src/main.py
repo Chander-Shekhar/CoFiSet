@@ -65,8 +65,7 @@ def calc_mean(d,P,A):
 
 for t1 in range(1000):
     loss=0
-    for t2 in range(Users.shape[0]):
-        user=np.random.randint(users[-1])
+    for user in range(Users.shape[0]):
         p_size=np.random.randint(d)+1
         a_size=np.random.randint(p_size)+1
         P_indices=np.random.randint(P_users[user].shape[0],size=p_size)
@@ -101,7 +100,7 @@ for t1 in range(1000):
             Bias[i-1]-= learning_rate*(del_rpa/P.shape[0] + beta_v*Bias[i-1] )
         for i in A:
             Bias[i-1]-= learning_rate*(del_rpa/A.shape[0] + beta_v*Bias[i-1] )
-    loss_epoch=loss/t2
+    loss_epoch=loss/Users.shape[0]
     print(loss_epoch)
 
 
