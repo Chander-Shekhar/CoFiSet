@@ -103,6 +103,16 @@ for t1 in range(1000):
     loss_epoch=loss/Users.shape[0]
     print(loss_epoch)
 
+#testing
+
+
+
+for t1 in range():
+
+
+
+
+
 
     
         
