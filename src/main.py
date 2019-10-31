@@ -106,8 +106,40 @@ for t1 in range(1000):
 #testing
 
 
+# Data Preprocessing
+data_test = pd.read_table('../dataset/u1test.txt', delim_whitespace=True, header = None, parse_dates=False)
+dataset_test=data_test.values[:,:2]
+feedback_test=data_test.values[:,2]
+users_test=data_test.values[:,0]
+observed_data_test=dataset_test[feedback_test>=3] 
+P_users_test=[]
+for i in range(dataset_test[-1,0]):
+    P_users_test.append(dataset_test[users_test==i+1,1])
 
-for t1 in range():
+print(len(P_users_test))
+print(Users.shape[0])
+
+K=5
+R=[]
+Ranking=[]
+for u in range(Users.shape[0]):
+    temp=[]
+    for i in range(Items.shape[0]):
+        temp.append(np.dot(Users[u],Items[i])+Bias[i])
+    Ranking.append(np.argsort(temp)[::-1])
+    R.append(np.sort(temp)[::-1])
+    
+print(len(Ranking))
+Precision=0
+for u in range(Users.shape[0]):
+    Precision_u=0
+    for i in range(K):
+        if(Ranking[u][i] in dataset_test[users_test==u,:]):
+            Precision_u+=1
+    Precision+=Precision_u/K
+Precision=Precision/Users.shape[0]
+print(Precision)
+
 
 
 
